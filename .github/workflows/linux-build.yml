@@ -50,22 +50,15 @@ jobs:
       - name: Build Linux release
         run: flutter build linux --release
 
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-build
-          path: build/linux/x64/release/bundle/
-          retention-days: 7
-
       - name: Create tarball
         run: |
-          cd build/linux/x64/release/bundle
-          tar -czf moore-linux-x64.tar.gz *
-          mv moore-linux-x64.tar.gz ../../../../../
+          cd build/linux/x64/release
+          tar -czf moore-linux-x64.tar.gz bundle/
 
       - name: Upload release tarball
         uses: actions/upload-artifact@v4
         with:
-          name: moore-linux-x64-tarball
-          path: moore-linux-x64.tar.gz
+          name: moore-linux-x64
+          path: build/linux/x64/release/moore-linux-x64.tar.gz
           retention-days: 30
+          compression-level: 0
