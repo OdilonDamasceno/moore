@@ -31,7 +31,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.40.0-1.0.pre-71"
+          flutter-version-file: pubspec.yaml
           channel: "master"
           cache: true
 
