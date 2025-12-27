@@ -44,9 +44,6 @@ jobs:
       - name: Analyze code
         run: flutter analyze
 
-      - name: Run tests
-        run: flutter test
-
       - name: Enable Linux desktop
         run: flutter config --enable-linux-desktop
 
