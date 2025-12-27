@@ -1,0 +1,27 @@
+{
+  "@@locale": "en",
+  "clockFormatter": "EEE MMM dd hh:mm a",
+  "@clockFormatter": {
+    "description": "The format for the clock displayed in the status bar."
+  },
+  "noEventsForThisDay": "No events for this day",
+  "@noEventsForThisDay": {
+    "description": "Message displayed when there are no events for the selected day in the calendar"
+  },
+  "notificationsTitle": "Notifications",
+  "@notificationsTitle": {
+    "description": "Title for the notifications section in the island module"
+  },
+  "clearAll": "Clear All",
+  "@clearAll": {
+    "description": "Button text to clear all notifications"
+  },
+  "noNotifications": "No notifications",
+  "@noNotifications": {
+    "description": "Message displayed when there are no notifications"
+  },
+  "volume": "Volume",
+  "@volume": {
+    "description": "Title for the volume control section in the island module"
+  }
+}
