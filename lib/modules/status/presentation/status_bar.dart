@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moore/core/providers/audio_manager_provider.dart';
-import 'package:moore/core/providers/notifications_manager_provider.dart';
+import 'package:moore/core/providers/notifications/notifications_manager_provider.dart';
 import 'package:moore/core/utils/debouncer.dart';
 import 'package:moore/modules/island/presentation/island.dart';
 import 'package:moore/modules/status/presentation/widgets/player_widget.dart';

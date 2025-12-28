@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:io';
 
-import 'package:moore/core/providers/notifications_manager_provider.dart';
+import 'package:moore/core/providers/notifications/notifications_manager_provider.dart';
 import 'package:moore/core/ui/themes/app_colors.dart';
 import 'package:moore/l10n/app_localizations.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
