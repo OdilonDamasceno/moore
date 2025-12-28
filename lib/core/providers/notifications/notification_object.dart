@@ -36,7 +36,7 @@ class OrgFreedesktopNotifications extends DBusObject {
     Map<String, DBusValue> hints,
     int expire_timeout,
   ) async {
-    int id = Random().nextInt(1 << 32);
+    final id = Random().nextInt(1 << 32);
     final dbusResponse = DBusMethodSuccessResponse([DBusUint32(id)]);
 
     controller.add(
