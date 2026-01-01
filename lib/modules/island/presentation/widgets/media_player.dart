@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moore/core/providers/audio_manager_provider.dart';
 import 'package:moore/core/ui/themes/app_colors.dart';
-import 'package:moore/core/ui/widgets/animated_media_visualizer.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:playerctl/core/media_player_manager.dart';
 
@@ -21,7 +20,7 @@ class MediaPlayer extends ConsumerWidget {
 
         return Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(4),
             border: Border.all(color: AppColors.grey.shade900.withAlpha(150)),
             color: AppColors.black10,
             image: DecorationImage(
@@ -37,84 +36,81 @@ class MediaPlayer extends ConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
-              mainAxisSize: .min,
-              mainAxisAlignment: .center,
-              crossAxisAlignment: .start,
               children: [
-                Expanded(
+                Flexible(
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          state.currentMedia.playerName.toUpperCase(),
-                          style: textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            fontSize: 10,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                        child: Column(
+                          mainAxisSize: .min,
+                          mainAxisAlignment: .center,
+                          crossAxisAlignment: .start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                state.currentMedia.playerName.toUpperCase(),
+                                style: textTheme.bodySmall?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                state.currentMedia.title,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  color: Colors.white,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                state.currentMedia.artist,
+                                style: textTheme.bodySmall?.copyWith(
+                                  color: Colors.white70,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      AnimatedMediaVisualizer(
-                        isPlaying: isPlaying,
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: IconButton(
+                                icon: Icon(PhosphorIcons.skipBack(), color: Colors.white),
+                                onPressed: mediaManager.previous,
+                              ),
+                            ),
+                            Expanded(
+                              child: IconButton(
+                                icon: Icon(
+                                  isPlaying ? PhosphorIcons.pause() : PhosphorIcons.play(),
+                                  color: Colors.white,
+                                ),
+                                onPressed: isPlaying ? mediaManager.pause : mediaManager.play,
+                              ),
+                            ),
+                            Expanded(
+                              child: IconButton(
+                                icon: Icon(PhosphorIcons.skipForward(), color: Colors.white),
+                                onPressed: mediaManager.next,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    state.currentMedia.title,
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: Colors.white,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    state.currentMedia.artist,
-                    style: textTheme.bodySmall?.copyWith(
-                      color: Colors.white70,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Center(
-                    child: SimpleBar(
-                      value: state.currentMedia.position?.toDouble() ?? 0.0,
-                      max: state.currentMedia.length?.toDouble() ?? 1.0,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: IconButton(
-                          icon: Icon(PhosphorIcons.skipBack(), color: Colors.white),
-                          onPressed: mediaManager.previous,
-                        ),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          icon: Icon(
-                            isPlaying ? PhosphorIcons.pause() : PhosphorIcons.play(),
-                            color: Colors.white,
-                          ),
-                          onPressed: isPlaying ? mediaManager.pause : mediaManager.play,
-                        ),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          icon: Icon(PhosphorIcons.skipForward(), color: Colors.white),
-                          onPressed: mediaManager.next,
-                        ),
-                      ),
-                    ],
-                  ),
+                SimpleBar(
+                  value: state.currentMedia.position?.toDouble() ?? 0.0,
+                  max: state.currentMedia.length?.toDouble() ?? 1.0,
                 ),
               ],
             ),

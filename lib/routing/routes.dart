@@ -39,7 +39,6 @@ class ResizableWidget extends ConsumerWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: AnimatedContainer(
-        margin: const .only(bottom: 2),
         decoration: const ShapeDecoration(
           shape: IslandShape(),
           color: Colors.black,

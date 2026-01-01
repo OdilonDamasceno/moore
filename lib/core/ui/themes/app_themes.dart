@@ -73,6 +73,18 @@ final darkAppThemeProvider = Provider((ref) {
     thumbColor: AppColors.primary.shade600,
   );
 
+  final filledButtonTheme = FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      foregroundColor: Colors.white,
+      backgroundColor: AppColors.primary.shade600,
+      alignment: Alignment.center - const Alignment(0.0, 0.2),
+      textStyle: textTheme.bodyMedium,
+    ),
+  );
+
   return ThemeData(
     useMaterial3: true,
     primarySwatch: AppColors.primary,
@@ -81,6 +93,7 @@ final darkAppThemeProvider = Provider((ref) {
     iconButtonTheme: iconButtonTheme,
     textButtonTheme: textButtonTheme,
     sliderTheme: sliderTheme,
+    filledButtonTheme: filledButtonTheme,
     pageTransitionsTheme: PageTransitionsTheme(
       builders: {
         for (final platform in TargetPlatform.values)

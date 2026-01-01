@@ -185,7 +185,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
               style: const TextStyle(
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
             const Spacer(),
@@ -213,11 +213,11 @@ class _CustomCalendarState extends State<CustomCalendar> {
         ),
         Expanded(
           child: Align(
-            alignment: .bottomCenter,
+            alignment: .center,
             child: GridView.count(
               padding: .zero,
               crossAxisCount: 7,
-              childAspectRatio: 1.8,
+              childAspectRatio: 1.2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: [
