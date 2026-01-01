@@ -69,8 +69,8 @@ final darkAppThemeProvider = Provider((ref) {
     trackHeight: 10,
     thumbSize: WidgetStateProperty.all(const Size(2, 20)),
     inactiveTrackColor: AppColors.grey.shade900,
-    activeTrackColor: AppColors.primary.shade600,
-    thumbColor: AppColors.primary.shade600,
+    activeTrackColor: AppColors.primary,
+    thumbColor: AppColors.primary,
   );
 
   final filledButtonTheme = FilledButtonThemeData(

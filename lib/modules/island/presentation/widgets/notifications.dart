@@ -151,22 +151,26 @@ class Notifications extends ConsumerWidget {
   }
 
   Widget _buildNotificationIcon(String? appIcon) {
-    const double size = 24;
+    const double size = 12;
+
+    Widget? buildIcon;
+
     if (appIcon == null || appIcon.isEmpty) {
-      return Icon(PhosphorIcons.bell(), size: size);
+      buildIcon = Icon(PhosphorIcons.bell(), size: size);
     }
 
     // If looks like a file path, try loading from filesystem first
     var path = appIcon;
-    if (path.startsWith('file://')) {
-      path = path.replaceFirst('file://', '');
+
+    if (path?.startsWith('file://') == true) {
+      path = path!.replaceFirst('file://', '');
     }
 
     try {
-      if (path.contains('/') || path.startsWith('.')) {
-        final file = File(path);
+      if (path?.contains('/') == true || path?.startsWith('.') == true) {
+        final file = File(path!);
         if (file.existsSync()) {
-          return Image.file(
+          buildIcon = Image.file(
             file,
             width: size,
             height: size,
@@ -180,13 +184,18 @@ class Notifications extends ConsumerWidget {
       // ignore filesystem errors and fallback to asset/icon
     }
 
-    // Try as an asset path (apps might ship small icons as assets)
-    return Image.asset(
-      appIcon,
+    buildIcon ??= Image.asset(
+      appIcon!,
       width: size,
       height: size,
       fit: BoxFit.cover,
+      alignment: Alignment.center,
       errorBuilder: (_, _, _) => Icon(PhosphorIcons.bell(), size: size),
+    );
+
+    return CircleAvatar(
+      radius: size,
+      child: buildIcon,
     );
   }
 }

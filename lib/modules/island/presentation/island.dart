@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moore/core/providers/window_manager_provider.dart';
 import 'package:moore/core/ui/painting/rounded_gapped_slider_track_shape.dart';
+import 'package:moore/core/ui/widgets/toggle_filled_button.dart';
 import 'package:moore/modules/island/presentation/widgets/calendar.dart';
 import 'package:moore/modules/island/presentation/widgets/clock_widget.dart';
 import 'package:moore/modules/island/presentation/widgets/media_player.dart';
@@ -105,45 +106,49 @@ class StartPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: .center,
             children: [
+              Material(
+                child: SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    trackHeight: 28,
+                    trackShape: const RoundedGappedSliderTrackShape(),
+                    thumbSize: WidgetStateProperty.all(const Size(2, 32)),
+                  ),
+                  child: Slider(
+                    padding: .zero,
+                    // ignore: deprecated_member_use
+                    year2023: false,
+                    value: 0.5,
+                    onChanged: (v) {},
+                  ),
+                ),
+              ),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: .stretch,
                   children: [
                     Expanded(
-                      child: FilledButton.icon(
-                        icon: Icon(PhosphorIcons.gps()),
-                        onPressed: () {},
-                        label: const Text('Open Apps'),
+                      child: ToggleFilledButton(
+                        icon: Icon(PhosphorIcons.network()),
+                        onPressed: (enabled) {},
+                        label: const Text('Internet'),
+                        subtitle: const Text('Ethernet'),
                       ),
                     ),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: FilledButton.icon(
-                        icon: Icon(PhosphorIcons.gps()),
-                        onPressed: () {},
-                        label: const Text('Open Apps'),
+                      child: ToggleFilledButton(
+                        enabled: false,
+                        icon: Icon(PhosphorIcons.bluetooth()),
+                        onPressed: (enabled) {},
+                        label: const Text('Bluetooth'),
+                        subtitle: const Text('On'),
                       ),
                     ),
                   ],
                 ),
               ),
-              Material(
-                child: SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    trackHeight: 24,
-                    trackShape: const RoundedGappedSliderTrackShape(),
-                    thumbSize: WidgetStateProperty.all(const Size(2, 30)),
-                  ),
-                  child: Slider(
-                    padding: .zero,
-                    // ignore: deprecated_member_use
-                    year2023: false,
-                    value: 0.1,
-                    onChanged: (v) {},
-                  ),
-                ),
-              ),
+              const SizedBox(height: 8),
               const Expanded(
                 flex: 2,
                 child: MediaPlayer(),
